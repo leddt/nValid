@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<project name="nValid" default="build" basedir=".">
+
+  <!-- NAnt settings -->
+  <property name="nant.settings.currentframework" value="net-3.5" />
+
+  <!-- Project structure -->
+  <property name="tools.folder" value="${project::get-base-directory()}\tools" />
+  <property name="solution.file" value="${project::get-base-directory()}\src\nValid.sln" />
+  <property name="commonAssemblyInfo.file" value="${project::get-base-directory()}\src\CommonAssemblyInfo.cs" />
+  
+  <!-- Build -->
+  <property name="config.name" value="Release" />
+  <property name="build.number" value="0.0.0.0" overwrite="false" />
+
+  <!-- Testing -->
+  <property name="tests.assembly" value="src\nValid.Tests\bin\${config.name}\nValid.Tests.dll"/>
+
+  <loadtasks assembly="${tools.folder}\nantcontrib\NAnt.Contrib.Tasks.dll"/>
+  
+  <target name="build" depends="compile, test" />
+  <target name="full" depends="version, build, package" />
+  
+  <target name="clean">
+    <msbuild project="${solution.file}" target="clean" verbosity="Normal">
+      <property name="Configuration" value="${config.name}" />
+    </msbuild>
+  </target>
+
+  <target name="version">
+    <asminfo output="${commonAssemblyInfo.file}" language="CSharp">
+      <imports>
+        <import namespace="System.Reflection" />
+      </imports>
+      <attributes>
+        <attribute type="AssemblyProductAttribute" value="nValid" />
+        <attribute type="AssemblyCopyrightAttribute" value="Copyright © 2009" />
+        <attribute type="AssemblyVersionAttribute" value="${build.number}" />
+        <attribute type="AssemblyFileVersionAttribute" value="${build.number}" />
+      </attributes>
+      <references>
+        <include name="System.dll" />
+      </references>
+    </asminfo>
+  </target>
+
+  <target name="compile" depends="clean">
+    <msbuild project="${solution.file}" target="Rebuild" verbosity="Normal">
+      <property name="Configuration" value="${config.name}" />
+    </msbuild>
+  </target>
+
+  <target name="test" depends="compile">
+    <nunit2>
+      <formatter type="Plain" />
+      <test assemblyname="${tests.assembly}" />
+    </nunit2>
+  </target>
+
+  <target name="package" depends="compile">
+	<mkdir dir="dist" />
+    <zip zipfile="dist\nValid-${build.number}.zip">
+      <fileset basedir="src\nValid\bin\${config.name}">
+        <include name="**/*.dll" />
+      </fileset>
+    </zip>
+  </target>
+  
+</project>

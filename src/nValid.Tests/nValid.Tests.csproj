@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5DA5F559-9BFD-4AB9-8688-056B6EAAEAB2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>nValid.Tests</RootNamespace>
+    <AssemblyName>nValid.Tests</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="nunit.framework, Version=2.4.1.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Rhino.Mocks, Version=3.5.0.1337, Culture=neutral, PublicKeyToken=0b3305902db7183f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Rhino.Mocks.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\CommonAssemblyInfo.cs">
+      <Link>CommonAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="FluentInterface\SetupValidationTests.cs" />
+    <Compile Include="FluentInterface\Usage.cs" />
+    <Compile Include="FluentInterface\ValidationTests.cs" />
+    <Compile Include="FluentInterface\ValidatorExtensionsTests.cs" />
+    <Compile Include="Framework\BrokenRuleTests.cs" />
+    <Compile Include="Framework\ConditionalRuleBaseTests.cs" />
+    <Compile Include="Framework\ForEachRuleTests.cs" />
+    <Compile Include="Framework\RuleBaseTests.cs" />
+    <Compile Include="Framework\RuleSetTests.cs" />
+    <Compile Include="Framework\TestConditionalRule.cs" />
+    <Compile Include="Framework\TestValidationContext.cs" />
+    <Compile Include="Framework\ValidationContextTests.cs" />
+    <Compile Include="Framework\ValidationResultTests.cs" />
+    <Compile Include="Framework\ValidatorRuleTests.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestBase.cs" />
+    <Compile Include="TestObjects\IMale.cs" />
+    <Compile Include="TestObjects\ISentient.cs" />
+    <Compile Include="TestObjects\Item.cs" />
+    <Compile Include="TestObjects\Man.cs" />
+    <Compile Include="TestObjects\Person.cs" />
+    <Compile Include="TestObjects\TestMessages.Designer.cs" />
+    <Compile Include="Utilities\ExtensionsTests.cs" />
+    <Compile Include="Utilities\Formatting\FormatExpressionTests.cs" />
+    <Compile Include="Utilities\Formatting\LiteralFormatTests.cs" />
+    <Compile Include="Utilities\Formatting\StringFormatterTests.cs" />
+    <Compile Include="Validators\CustomValidatorTests.cs" />
+    <Compile Include="Validators\EqualValidatorTests.cs" />
+    <Compile Include="Validators\GreaterOrEqualToValidatorTests.cs" />
+    <Compile Include="Validators\GreaterThanValidatorTests.cs" />
+    <Compile Include="Validators\LengthValidatorTests.cs" />
+    <Compile Include="Validators\ListEmptyValidatorTests.cs" />
+    <Compile Include="Validators\LowerOrEqualToValidatorTests.cs" />
+    <Compile Include="Validators\LowerThanValidatorTests.cs" />
+    <Compile Include="Validators\NegatedValidatorTests.cs" />
+    <Compile Include="Validators\NullValidatorTests.cs" />
+    <Compile Include="Validators\RegExValidatorTests.cs" />
+    <Compile Include="Validators\StringEmptyValidatorTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestObjects\TestMessages.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\nValid\nValid.csproj">
+      <Project>{74625A29-75F5-4559-9704-9D3BEA52BA76}</Project>
+      <Name>nValid</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

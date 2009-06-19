@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nValid", "nValid\nValid.csproj", "{74625A29-75F5-4559-9704-9D3BEA52BA76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nValid.Tests", "nValid.Tests\nValid.Tests.csproj", "{5DA5F559-9BFD-4AB9-8688-056B6EAAEAB2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{74625A29-75F5-4559-9704-9D3BEA52BA76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74625A29-75F5-4559-9704-9D3BEA52BA76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74625A29-75F5-4559-9704-9D3BEA52BA76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74625A29-75F5-4559-9704-9D3BEA52BA76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DA5F559-9BFD-4AB9-8688-056B6EAAEAB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DA5F559-9BFD-4AB9-8688-056B6EAAEAB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DA5F559-9BFD-4AB9-8688-056B6EAAEAB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DA5F559-9BFD-4AB9-8688-056B6EAAEAB2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
