@@ -60,6 +60,9 @@
   <target name="package" depends="compile">
 	<mkdir dir="dist" />
     <zip zipfile="dist\nValid-${build.number}.zip">
+	  <fileset basedir=".">
+	    <include name="LICENSE.txt" />
+	  </fileset>
       <fileset basedir="src\nValid\bin\${config.name}">
         <include name="**/*.dll" />
       </fileset>
