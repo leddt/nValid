@@ -58,6 +58,7 @@
   </target>
 
   <target name="package" depends="compile">
+	<delete dir="dist" if="${directory::exists('dist')}" />
 	<mkdir dir="dist" />
     <zip zipfile="dist\nValid-${build.number}.zip">
 	  <fileset basedir=".">
