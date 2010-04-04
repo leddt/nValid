@@ -9,12 +9,12 @@ namespace nValid.Validators
 
         public string DefaultErrorMessage
         {
-            get { return ValidationContext.Current.GetResourceString("nValid_RegEx_DefaultMessage"); }
+            get { return ValidationContext.GetResourceString("nValid_RegEx_DefaultMessage"); }
         }
 
         public string DefaultNegatedErrorMessage
         {
-            get { return ValidationContext.Current.GetResourceString("nValid_RegEx_DefaultMessage_Negated"); }
+            get { return ValidationContext.GetResourceString("nValid_RegEx_DefaultMessage_Negated"); }
         }
 
         public RegExValidator(string pattern)

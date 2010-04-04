@@ -12,12 +12,12 @@ namespace nValid.Validators
 
         public string DefaultErrorMessage
         {
-            get { return string.Format(ValidationContext.Current.GetResourceString("nValid_GreaterThan_DefaultMessage"), valueString); }
+            get { return string.Format(ValidationContext.GetResourceString("nValid_GreaterThan_DefaultMessage"), valueString); }
         }
 
         public string DefaultNegatedErrorMessage
         {
-            get { return string.Format(ValidationContext.Current.GetResourceString("nValid_GreaterThan_DefaultMessage_Negated"), valueString); }
+            get { return string.Format(ValidationContext.GetResourceString("nValid_GreaterThan_DefaultMessage_Negated"), valueString); }
         }
 
         public GreaterThanValidator(Expression<Func<TInstance, TValue>> valueToCompare)

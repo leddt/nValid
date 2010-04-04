@@ -22,8 +22,7 @@ namespace nValid.Tests.FluentInterface
 
         protected override void PerTestTearDown()
         {
-            context = null;
-            ValidationContext.Current = null;
+            ValidationContext.Reset();
         }
 
         [Test]
@@ -153,8 +152,8 @@ namespace nValid.Tests.FluentInterface
             var rm = new ResourceManager(GetType());
             SetupValidation.AddResourceManager(rm);
 
-            Assert.That(ValidationContext.Current.ResourceManagers.Count, Is.EqualTo(1));
-            Assert.That(ValidationContext.Current.ResourceManagers[0], Is.SameAs(rm));
+            Assert.That(ValidationContext.ResourceManagers.Count, Is.EqualTo(1));
+            Assert.That(ValidationContext.ResourceManagers[0], Is.SameAs(rm));
         }
 
         [Test]
@@ -162,8 +161,8 @@ namespace nValid.Tests.FluentInterface
         {
             SetupValidation.AddResourceManager("resources", GetType().Assembly);
 
-            Assert.That(ValidationContext.Current.ResourceManagers.Count, Is.EqualTo(1));
-            Assert.That(ValidationContext.Current.ResourceManagers[0].BaseName, Is.EqualTo("resources"));
+            Assert.That(ValidationContext.ResourceManagers.Count, Is.EqualTo(1));
+            Assert.That(ValidationContext.ResourceManagers[0].BaseName, Is.EqualTo("resources"));
         }
 
         [Test]
@@ -173,7 +172,7 @@ namespace nValid.Tests.FluentInterface
             SetupValidation.For<Person>(rules => rules.Custom(p => false));
             SetupValidation.Reset();
 
-            Assert.That(ValidationContext.Current.ResourceManagers.Count, Is.EqualTo(0));
+            Assert.That(ValidationContext.ResourceManagers.Count, Is.EqualTo(0));
             Assert.That(ValidationContext.Current.Validate(new Person()).IsValid, Is.True);
         }
 

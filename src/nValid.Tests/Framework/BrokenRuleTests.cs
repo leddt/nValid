@@ -25,7 +25,7 @@ namespace nValid.Tests.Framework
         [Test]
         public void Can_use_resource_as_message()
         {
-            ValidationContext.Current.ResourceManagers.Add(TestMessages.ResourceManager);
+            ValidationContext.ResourceManagers.Add(TestMessages.ResourceManager);
 
             var rule = CreateStub<IRule>();
             rule.Stub(r => r.Resource).Return("personInvalidName");

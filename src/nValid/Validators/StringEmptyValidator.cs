@@ -7,12 +7,12 @@ namespace nValid.Validators
     {
         public string DefaultErrorMessage
         {
-            get { return ValidationContext.Current.GetResourceString("nValid_StringEmpty_DefaultMessage"); }
+            get { return ValidationContext.GetResourceString("nValid_StringEmpty_DefaultMessage"); }
         }
 
         public string DefaultNegatedErrorMessage
         {
-            get { return ValidationContext.Current.GetResourceString("nValid_StringEmpty_DefaultMessage_Negated"); }
+            get { return ValidationContext.GetResourceString("nValid_StringEmpty_DefaultMessage_Negated"); }
         }
 
         public bool Validate(TInstance instance, string value)

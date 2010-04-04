@@ -27,7 +27,7 @@ namespace nValid.Tests.Framework
 
         protected override void PerTestTearDown()
         {
-            ValidationContext.Current = null;
+            ValidationContext.Reset();
         }
 
         [Test]
@@ -207,7 +207,7 @@ namespace nValid.Tests.Framework
         [Test]
         public void Can_get_resource_from_default_resource_manager()
         {
-            var value = ValidationContext.Current.GetResourceString("nValid_Custom_DefaultMessage");
+            var value = ValidationContext.GetResourceString("nValid_Custom_DefaultMessage");
 
             Assert.That(value, Is.EqualTo("{Property} is invalid."));
         }
@@ -215,9 +215,9 @@ namespace nValid.Tests.Framework
         [Test]
         public void Can_get_resource_from_custom_resource_manager()
         {
-            ValidationContext.Current.ResourceManagers.Add(TestMessages.ResourceManager);
+            ValidationContext.ResourceManagers.Add(TestMessages.ResourceManager);
 
-            var value = ValidationContext.Current.GetResourceString("nValid_Custom_DefaultMessage");
+            var value = ValidationContext.GetResourceString("nValid_Custom_DefaultMessage");
 
             Assert.That(value, Is.EqualTo("TEST CUSTOM DEFAULT"));
         }

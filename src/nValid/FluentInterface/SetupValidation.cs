@@ -24,7 +24,7 @@ namespace nValid.FluentInterface
         /// </param>
         public static void AddResourceManager(ResourceManager resourceManager)
         {
-            ValidationContext.Current.ResourceManagers.Add(resourceManager);
+            ValidationContext.ResourceManagers.Add(resourceManager);
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace nValid.FluentInterface
         /// </param>
         public static void AddResourceManager(string baseName, Assembly assembly)
         {
-            ValidationContext.Current.ResourceManagers.Add(new ResourceManager(baseName, assembly));
+            ValidationContext.ResourceManagers.Add(new ResourceManager(baseName, assembly));
         }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace nValid.FluentInterface
         /// </summary>
         public static void Reset()
         {
-            ValidationContext.Current = null;
+            ValidationContext.Reset();
         }
     }
 }

@@ -9,12 +9,12 @@ namespace nValid.Validators
 
         public string DefaultErrorMessage
         {
-            get { return ValidationContext.Current.GetResourceString("nValid_Custom_DefaultMessage"); }
+            get { return ValidationContext.GetResourceString("nValid_Custom_DefaultMessage"); }
         }
 
         public string DefaultNegatedErrorMessage
         {
-            get { return ValidationContext.Current.GetResourceString("nValid_Custom_DefaultMessage_Negated"); }
+            get { return ValidationContext.GetResourceString("nValid_Custom_DefaultMessage_Negated"); }
         }
 
         public CustomValidator(Func<TInstance, TValue, bool> validationFunction)

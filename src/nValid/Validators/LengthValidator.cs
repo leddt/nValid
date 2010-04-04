@@ -14,12 +14,12 @@ namespace nValid.Validators
 
         public string DefaultErrorMessage
         {
-            get { return string.Format(ValidationContext.Current.GetResourceString("nValid_Length_DefaultMessage"), minString, maxString); }
+            get { return string.Format(ValidationContext.GetResourceString("nValid_Length_DefaultMessage"), minString, maxString); }
         }
 
         public string DefaultNegatedErrorMessage
         {
-            get { return string.Format(ValidationContext.Current.GetResourceString("nValid_Length_DefaultMessage_Negated"), minString, maxString); }
+            get { return string.Format(ValidationContext.GetResourceString("nValid_Length_DefaultMessage_Negated"), minString, maxString); }
         }
 
         public LengthValidator(Expression<Func<TInstance, int>> minLength, Expression<Func<TInstance, int>> maxLength)

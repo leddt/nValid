@@ -18,7 +18,7 @@ namespace nValid.Framework
 
                 // Try and get message template from resource
                 if (!string.IsNullOrEmpty(rule.Resource))
-                    message = ValidationContext.Current.GetResourceString(rule.Resource);
+                    message = ValidationContext.GetResourceString(rule.Resource);
 
                 // If no resource, get message template from rule
                 if (string.IsNullOrEmpty(message))

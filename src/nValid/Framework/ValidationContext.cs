@@ -24,7 +24,16 @@ namespace nValid.Framework
             set { current = value; }
         }
 
-        public IList<ResourceManager> ResourceManagers { get; private set; }
+        /// <summary>
+        /// Resets all validation configuration.
+        /// </summary>
+        public static void Reset()
+        {
+            Current = null;
+            ResourceManagers = new List<ResourceManager>();
+        }
+
+        public static IList<ResourceManager> ResourceManagers { get; private set; }
         private static ResourceManager DefaultResourceManager
         {
             get
@@ -40,7 +49,11 @@ namespace nValid.Framework
         {
             _rscache = new Dictionary<Type, IList<IRuleSet>>();
             _rulesets = new List<IRuleSet>();
-            ResourceManagers = new List<ResourceManager>();
+        }
+
+        static ValidationContext()
+        {
+            Reset();
         }
 
         public ValidationResult Validate(object instance)
@@ -72,7 +85,7 @@ namespace nValid.Framework
             _rscache.Clear();
         }
 
-        public string GetResourceString(string key)
+        public static string GetResourceString(string key)
         {
             string value = null;
 
