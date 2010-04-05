@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{74625A29-75F5-4559-9704-9D3BEA52BA76}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -71,6 +71,7 @@
     <Compile Include="Framework\RuleExecutionResult.cs" />
     <Compile Include="Framework\RuleSet.cs" />
     <Compile Include="Framework\ValidationContext.cs" />
+    <Compile Include="Framework\ValidationContextSwitch.cs" />
     <Compile Include="Framework\ValidationResult.cs" />
     <Compile Include="Framework\ValidatorRule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

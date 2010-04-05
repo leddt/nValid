@@ -7,16 +7,21 @@ namespace nValid.Framework
 {
     public class ValidationContext : IValidationContext
     {
-        private readonly IDictionary<Type, IList<IRuleSet>> _rscache;
-        private readonly IList<IRuleSet> _rulesets;
+        private readonly IDictionary<Type, IList<IRuleSet>> rscache;
+        private readonly IList<IRuleSet> rulesets;
 
-        private static IValidationContext current;
+        private static IDictionary<string, IValidationContext> namedContexts;
+        private static IValidationContext defaultContext;
+        [ThreadStatic] private static IValidationContext current;
+
+        public static IList<ResourceManager> ResourceManagers { get; private set; }
+
         public static IValidationContext Current
         {
             get
             {
                 if (current == null)
-                    current = new ValidationContext();
+                    current = defaultContext;
 
                 return current;
             }
@@ -31,9 +36,20 @@ namespace nValid.Framework
         {
             Current = null;
             ResourceManagers = new List<ResourceManager>();
+            namedContexts = new Dictionary<string, IValidationContext>();
+            defaultContext = new ValidationContext();
         }
 
-        public static IList<ResourceManager> ResourceManagers { get; private set; }
+        public static IValidationContext GetNamedContext(string contextName)
+        {
+            var name = contextName.ToLowerInvariant();
+
+            if (!namedContexts.ContainsKey(name))
+                namedContexts.Add(name, new ValidationContext());
+
+            return namedContexts[name];
+        }
+
         private static ResourceManager DefaultResourceManager
         {
             get
@@ -47,8 +63,8 @@ namespace nValid.Framework
 
         protected ValidationContext()
         {
-            _rscache = new Dictionary<Type, IList<IRuleSet>>();
-            _rulesets = new List<IRuleSet>();
+            rscache = new Dictionary<Type, IList<IRuleSet>>();
+            rulesets = new List<IRuleSet>();
         }
 
         static ValidationContext()
@@ -75,14 +91,14 @@ namespace nValid.Framework
 
         public void AddRuleSet(IRuleSet set)
         {
-            _rulesets.Add(set);
-            _rscache.Clear();
+            rulesets.Add(set);
+            rscache.Clear();
         }
 
         public void AddRuleSet<TInstance>(IList<IRule> rules)
         {
-            _rulesets.Add(new RuleSet(typeof(TInstance), rules));
-            _rscache.Clear();
+            rulesets.Add(new RuleSet(typeof(TInstance), rules));
+            rscache.Clear();
         }
 
         public static string GetResourceString(string key)
@@ -105,13 +121,13 @@ namespace nValid.Framework
 
         protected IList<IRuleSet> GetRulesetsFor(Type type)
         {
-            if (!_rscache.ContainsKey(type))
+            if (!rscache.ContainsKey(type))
             {
                 var sets = FindRuleSets(type);
-                _rscache.Add(type, sets);
+                rscache.Add(type, sets);
             }
 
-            return _rscache[type];
+            return rscache[type];
         }
 
         private List<IRuleSet> FindRuleSets(Type type)
@@ -143,7 +159,7 @@ namespace nValid.Framework
 
         private IRuleSet FindExactRuleSet(Type type)
         {
-            return (from s in _rulesets
+            return (from s in rulesets
                     where s.ValidatedType == type
                     select s).SingleOrDefault();
         }
