@@ -68,6 +68,16 @@ namespace nValid.FluentInterface
         }
 
         /// <summary>
+        /// Allows to setup rules in a named context.
+        /// </summary>
+        /// <param name="contextName">The name of the context for which to setup the rule.</param>
+        /// <returns>A <see cref="NamedContextSetup"/> instance that can be used to setup rules in the specified context.</returns>
+        public static NamedContextSetup InContext(string contextName)
+        {
+            return new NamedContextSetup(contextName);
+        }
+
+        /// <summary>
         /// Clears any and all configuration data and rule sets for the validation system.
         /// </summary>
         public static void Reset()

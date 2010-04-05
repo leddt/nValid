@@ -45,9 +45,28 @@ namespace nValid.Framework
             var name = contextName.ToLowerInvariant();
 
             if (!namedContexts.ContainsKey(name))
-                namedContexts.Add(name, new ValidationContext());
+            {
+                lock (namedContexts)
+                {
+                    if (!namedContexts.ContainsKey(name))
+                        namedContexts.Add(name, new ValidationContext());
+                }
+            }
 
             return namedContexts[name];
+        }
+
+        internal static void SetNamedContext(string contextName, IValidationContext context)
+        {
+            var name = contextName.ToLowerInvariant();
+
+            lock (namedContexts)
+            {
+                if (namedContexts.ContainsKey(name))
+                    namedContexts[name] = context;
+                else
+                    namedContexts.Add(name, context);
+            }
         }
 
         private static ResourceManager DefaultResourceManager

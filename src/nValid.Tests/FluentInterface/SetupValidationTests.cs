@@ -199,5 +199,16 @@ namespace nValid.Tests.FluentInterface
             var rule = (ValidatorRule<Person, string>)context.GetRuleSetsForType<Person>().First().Rules.First();
             Assert.That(rule.Validate(new Person { Name = "invalid" }).BrokenRules.First().PropertyKey, Is.EqualTo("_name"));
         }
+
+        [Test]
+        public void Can_setup_validation_in_named_context()
+        {
+            var testContext = new TestValidationContext();
+            ValidationContext.SetNamedContext("TestContext", testContext);
+
+            SetupValidation.InContext("TestContext").For<Person>(rules => { });
+
+            Assert.That(testContext.GetRuleSetsForType<Person>().Count, Is.EqualTo(1));
+        }
     }
 }

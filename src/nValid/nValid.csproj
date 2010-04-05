@@ -53,6 +53,7 @@
     <Compile Include="FluentInterface\ForEachRuleBuilder.cs" />
     <Compile Include="FluentInterface\IRuleBuilder.cs" />
     <Compile Include="FluentInterface\IValidationNode.cs" />
+    <Compile Include="FluentInterface\NamedContextSetup.cs" />
     <Compile Include="FluentInterface\NegationNode.cs" />
     <Compile Include="FluentInterface\PropertyNode.cs" />
     <Compile Include="FluentInterface\RuleBuilder.cs" />

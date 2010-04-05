@@ -15,7 +15,7 @@ namespace nValid.Tests.FluentInterface
         }
 
         [Test]
-        public void Should_validate_against_current_validation_context()
+        public void Can_validate_against_current_validation_context()
         {
             var person = new Person();
             var expectedResult = new ValidationResult();
@@ -33,7 +33,7 @@ namespace nValid.Tests.FluentInterface
         }
 
         [Test]
-        public void Should_validate_against_current_validation_context_using_alternate_syntax()
+        public void Can_validate_against_current_validation_context_using_alternate_syntax()
         {
             var person = new Person();
             var expectedResult = new ValidationResult();
@@ -44,6 +44,42 @@ namespace nValid.Tests.FluentInterface
             context.Expect(c => c.Validate(person)).Return(expectedResult);
 
             var result = person.Validate();
+
+            Assert.That(result, Is.SameAs(expectedResult));
+
+            VerifyAll();
+        }
+
+        [Test]
+        public void Can_validate_against_named_validation_context()
+        {
+            var person = new Person();
+            var expectedResult = new ValidationResult();
+
+            var context = CreateMock<IValidationContext>();
+            ValidationContext.SetNamedContext("TestContext", context);
+
+            context.Expect(c => c.Validate(person)).Return(expectedResult);
+
+            var result = Validate.InstanceInContext(person, "TestContext");
+
+            Assert.That(result, Is.SameAs(expectedResult));
+
+            VerifyAll();
+        }
+
+        [Test]
+        public void Can_validate_against_named_validation_context_using_alternate_syntax()
+        {
+            var person = new Person();
+            var expectedResult = new ValidationResult();
+
+            var context = CreateMock<IValidationContext>();
+            ValidationContext.SetNamedContext("TestContext", context);
+
+            context.Expect(c => c.Validate(person)).Return(expectedResult);
+
+            var result = person.ValidateInContext("TestContext");
 
             Assert.That(result, Is.SameAs(expectedResult));
 
