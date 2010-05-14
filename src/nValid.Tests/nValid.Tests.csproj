@@ -67,7 +67,6 @@
     <Compile Include="Framework\RuleSetTests.cs" />
     <Compile Include="Framework\TestConditionalRule.cs" />
     <Compile Include="Framework\TestValidationContext.cs" />
-    <Compile Include="Framework\ValidationContextSwitchTests.cs" />
     <Compile Include="Framework\ValidationContextTests.cs" />
     <Compile Include="Framework\ValidationResultTests.cs" />
     <Compile Include="Framework\ValidatorRuleTests.cs" />

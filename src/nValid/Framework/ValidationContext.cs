@@ -11,8 +11,7 @@ namespace nValid.Framework
         private readonly IList<IRuleSet> rulesets;
 
         private static IDictionary<string, IValidationContext> namedContexts;
-        private static IValidationContext defaultContext;
-        [ThreadStatic] private static IValidationContext current;
+        private static IValidationContext current;
 
         public static IList<ResourceManager> ResourceManagers { get; private set; }
 
@@ -21,7 +20,7 @@ namespace nValid.Framework
             get
             {
                 if (current == null)
-                    current = defaultContext;
+                    current = new ValidationContext();
 
                 return current;
             }
@@ -37,7 +36,6 @@ namespace nValid.Framework
             Current = null;
             ResourceManagers = new List<ResourceManager>();
             namedContexts = new Dictionary<string, IValidationContext>();
-            defaultContext = new ValidationContext();
         }
 
         public static IValidationContext GetNamedContext(string contextName)

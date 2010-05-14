@@ -221,5 +221,41 @@ namespace nValid.Tests.Framework
 
             Assert.That(value, Is.EqualTo("TEST CUSTOM DEFAULT"));
         }
+
+        [Test]
+        public void Can_get_named_context()
+        {
+            var namedContext = ValidationContext.GetNamedContext("TestContext");
+            var defaultContext = ValidationContext.Current;
+
+            Assert.That(defaultContext, Is.Not.SameAs(namedContext));
+        }
+
+        [Test]
+        public void Can_reuse_named_context()
+        {
+            var test1 = ValidationContext.GetNamedContext("TestContext");
+            var test2 = ValidationContext.GetNamedContext("TestContext");
+
+            Assert.That(test1, Is.SameAs(test2));
+        }
+
+        [Test]
+        public void Different_context_names_result_in_different_contexts()
+        {
+            var test1 = ValidationContext.GetNamedContext("TestContext");
+            var test2 = ValidationContext.GetNamedContext("TestContext 2");
+
+            Assert.That(test1, Is.Not.SameAs(test2));
+        }
+
+        [Test]
+        public void Context_name_ignores_case()
+        {
+            var test1 = ValidationContext.GetNamedContext("TestContext");
+            var test2 = ValidationContext.GetNamedContext("testcontext");
+
+            Assert.That(test1, Is.SameAs(test2));
+        }
     }
 }

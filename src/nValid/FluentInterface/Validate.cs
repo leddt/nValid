@@ -11,10 +11,7 @@ namespace nValid.FluentInterface
 
         public static ValidationResult InstanceInContext<TInstance>(TInstance instance, string contextName)
         {
-            using (new ValidationContextSwitch(contextName))
-            {
-                return ValidationContext.Current.Validate(instance);
-            }
+            return ValidationContext.GetNamedContext(contextName).Validate(instance);
         }
     }
 }

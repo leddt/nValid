@@ -72,7 +72,6 @@
     <Compile Include="Framework\RuleExecutionResult.cs" />
     <Compile Include="Framework\RuleSet.cs" />
     <Compile Include="Framework\ValidationContext.cs" />
-    <Compile Include="Framework\ValidationContextSwitch.cs" />
     <Compile Include="Framework\ValidationResult.cs" />
     <Compile Include="Framework\ValidatorRule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

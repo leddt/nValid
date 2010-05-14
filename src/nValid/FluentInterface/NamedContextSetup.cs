@@ -27,13 +27,10 @@ namespace nValid.FluentInterface
         /// </param>
         public void For<TInstance>(Action<IRuleBuilder<TInstance>> rules)
         {
-            using (new ValidationContextSwitch(contextName))
-            {
-                var builder = new RuleBuilder<TInstance>();
-                rules(builder);
+            var builder = new RuleBuilder<TInstance>();
+            rules(builder);
 
-                ValidationContext.Current.AddRuleSet(builder.GetRules());
-            }
+            ValidationContext.GetNamedContext(contextName).AddRuleSet(builder.GetRules());
         }
     }
 }
