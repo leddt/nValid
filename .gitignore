@@ -12,7 +12,3 @@ _[rR]e[sS]harper.*
 *.cache
 ~$*
 Thumbs.db
-
-
-build/
-*.resx
