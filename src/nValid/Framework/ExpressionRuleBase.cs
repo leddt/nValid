@@ -15,5 +15,19 @@ namespace nValid.Framework
         {
             return valueFunction(instance);
         }
+
+        protected bool TryGetValue(TInstance instance, out TValue value)
+        {
+            try
+            {
+                value = valueFunction(instance);
+                return true;
+            }
+            catch
+            {
+                value = default(TValue);
+                return false;
+            }
+        }
     }
 }

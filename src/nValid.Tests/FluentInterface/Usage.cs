@@ -29,7 +29,9 @@ namespace nValid.Tests.FluentInterface
                         .Matches("^([A-Z][a-z]* ?)+$");
 
                     rules.Property(p => p.Age)
-                        .GreaterOrEqualTo(13).WithMessage("Age must be greater than 13");
+                        .GreaterOrEqualTo(13).WithMessage("Age must be greater than 13")
+                        .Convert(x => x.ToString())
+                        .Length(1, 2).WithMessage("Age must be one or two characters");
 
                     rules.Property(p => p.Notes)
                         .Custom(notes => notes.Count <= 10).When(p => p.Age <= 6);

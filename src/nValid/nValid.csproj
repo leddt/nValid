@@ -49,6 +49,7 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="FluentInterface\ConversionNode.cs" />
     <Compile Include="FluentInterface\Extensions.cs" />
     <Compile Include="FluentInterface\ForEachRuleBuilder.cs" />
     <Compile Include="FluentInterface\IRuleBuilder.cs" />

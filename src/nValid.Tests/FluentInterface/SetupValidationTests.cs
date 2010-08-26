@@ -210,5 +210,34 @@ namespace nValid.Tests.FluentInterface
 
             Assert.That(testContext.GetRuleSetsForType<Person>().Count, Is.EqualTo(1));
         }
+
+        [Test]
+        public void Can_convert_property()
+        {
+            SetupValidation.For<Person>(rules =>
+                                        rules.Property(p => p.Age)
+                                            .Convert(x => x.ToString())
+                                            .Length(1, 2));
+            
+            var r1 = context.GetRuleSetsForType<Person>()[0].Rules.ElementAt(0) as ValidatorRule<Person, string>;
+
+            Assert.That(r1.Validate(new Person { Age = 12 }).IsValid, Is.True);
+            Assert.That(r1.Validate(new Person { Age = 120 }).IsValid, Is.False);
+        }
+
+        [Test]
+        public void Can_convert_after_validator()
+        {
+            SetupValidation.For<Person>(rules =>
+                                        rules.Property(p => p.Age)
+                                            .GreaterThan(0)
+                                            .Convert(x => x.ToString())
+                                            .Length(1, 2));
+
+            var r1 = context.GetRuleSetsForType<Person>()[0].Rules.ElementAt(1) as ValidatorRule<Person, string>;
+
+            Assert.That(r1.Validate(new Person { Age = 12 }).IsValid, Is.True);
+            Assert.That(r1.Validate(new Person { Age = 120 }).IsValid, Is.False);
+        }
     }
 }

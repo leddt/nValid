@@ -41,5 +41,10 @@ namespace nValid.FluentInterface
         {
             get { return new NegationNode<TInstance, TValue>(builder, valueFunction, propertyKey, propertyName); }
         }
+
+        public ConversionNode<TInstance, TValue, TConvertedValue> Convert<TConvertedValue>(Func<TValue, TConvertedValue> converter)
+        {
+            return new ConversionNode<TInstance, TValue, TConvertedValue>(builder, valueFunction, propertyKey, propertyName, converter);
+        }
     }
 }

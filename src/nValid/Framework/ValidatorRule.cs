@@ -30,12 +30,16 @@ namespace nValid.Framework
 
         protected override RuleExecutionResult Validate(TInstance instance)
         {
-            var value = GetValue(instance);
-            var valid = validator.Validate(instance, GetValue(instance));
-            
+            TValue value;
             var result = new RuleExecutionResult();
-            if (!valid)
-                result.BrokenRules.Add(new BrokenRule(this, instance, propertyKey, propertyName, value));
+
+            // Not sure about that...
+            if (TryGetValue(instance, out value))
+            {
+                var valid = validator.Validate(instance, GetValue(instance));
+                if (!valid)
+                    result.BrokenRules.Add(new BrokenRule(this, instance, propertyKey, propertyName, value));
+            }
 
             return result;
         }
