@@ -1,0 +1,30 @@
+h1. nValid -- Fluent validation library for .NET
+
+With nValid, you can cleanly define validation rules for any .NET type, and validate instances of types with a very "simple syntax":http://github.com/leddt/nValid/blob/master/src/nValid.Tests/FluentInterface/Usage.cs#L19.
+
+h2. Features
+
+The main features are:
+  * Fluent interface for configuration
+  * Can validate any POCO
+  * Zero dependencies
+  * Easily extensible
+  * Can use resources to set error message (localization support).
+  * Basic support for named validation contexts.
+
+h2. Planned features
+
+The following features are not yet available, but are planned:
+  * *Client-side validation*. We want to be able to generate client-side validation logic based on our rulesets. Either integrate with an existing library (for example, "xVal":http://xval.codeplex.com/), or develop our own solution.
+  * *Cleaner way to setup rules*. The current syntax for registering rules makes it hard to organize a large number of rulesets. We need a clean way to have rulesets in individual files. Probably something similar to "StructureMap's":http://structuremap.sourceforge.net/ registries.
+
+h2. Project status
+
+The project is still in an early stage. I would *love* to receive comments, code reviews, suggestions and/or patches. You can reach me at "comments@nvalid.net":mailto:comments@nvalid.net. 
+
+Right now I work on nValid when I need it to do something it doesn't currently do.
+
+h2. Thanks
+
+_nValid uses code by :_
+  * "Phil Haack":http://www.haacked.com/
