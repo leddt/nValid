@@ -19,7 +19,7 @@
   <loadtasks assembly="${tools.folder}\nantcontrib\NAnt.Contrib.Tasks.dll"/>
   
   <target name="build" depends="compile, test" />
-  <target name="full" depends="version, build, package" />
+  <target name="full" depends="version, build, package, nupack" />
   
   <target name="clean">
     <msbuild project="${solution.file}" target="clean" verbosity="Normal">
@@ -70,4 +70,34 @@
     </zip>
   </target>
   
+  <target name="nupack" depends="compile">
+    <delete dir="pack" if="${directory::exists('pack')}" />
+    <mkdir dir="pack" />
+    <echo file="pack\nvalid.nuspec"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<package>
+	<metadata>
+		<id>nvalid</id>
+		<version>${build.number}</version>
+		<authors>
+			<author>David Thibault</author>
+		</authors>
+		<description>Fluent validation library for .Net. With nValid, you can cleanly define validation rules for any .Net type, and validate instances with a single line of code.</description>
+		<homepage>http://nvalid.net</homepage>
+		<language>en-CA</language>
+	</metadata>
+</package>]]></echo>
+    <copy todir="pack/lib">
+      <fileset basedir="src\nValid\bin\${config.name}">
+        <include name="**/*.dll" />
+      </fileset>
+    </copy>
+	<exec program="${tools.folder}\nupack\nupack.exe" basedir="pack">
+      <arg value="pack\nvalid.nuspec" />
+    </exec>
+    <move todir="pack">
+      <fileset>
+        <include name="*.nupkg" />
+      </fileset>
+    </move>
+  </target>
 </project>
